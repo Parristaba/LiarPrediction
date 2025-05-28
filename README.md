@@ -1,7 +1,8 @@
-LIAR Fact Classification with BERT & Metadata Fusion
+# LIAR Fact Classification with BERT & Metadata Fusion
+
 This project explores multiple transformer-based models for classifying political statements from the LIAR dataset into six truthfulness categories using RoBERTa and a variety of metadata fusion techniques.
 
-🧠 Problem Statement
+### Problem Statement
 The LIAR dataset contains over 12,000 short political statements labeled with six classes of truthfulness:
 
 true
@@ -18,7 +19,7 @@ pants-fire
 
 The goal is to build a robust classifier that can predict the label of a given statement, optionally enriched with speaker metadata.
 
-🗂️ Project Structure
+### Project Structure
 1. Data Preparation: Loads and cleans the data, performs label mapping, and handles missing metadata.
 
 2. Dataset Creation: Creates separate datasets for text-only and metadata-augmented models.
@@ -33,28 +34,29 @@ Special Tokens Model: Introduces special tokens for metadata fields.
 
 Fused Metadata Model: Embeds metadata with a small MLP and fuses it with BERT output.
 
-⚙️ Setup
+### Setup
 bash
 Copy
 Edit
-# Create environment
+
+##### Create environment
 conda create -n liar-classification python=3.9
 conda activate liar-classification
 
-# Install dependencies
+##### Install dependencies
 pip install -r requirements.txt
 Ensure GPU is available for faster training.
 
-🧪 Experiments
+### Experiments
 Model	Test Accuracy	Macro F1
 Text-Only RoBERTa	28.2%	28.1%
 Text + Metadata Concat	25.6%	25.7%
 Special Token Injection	20.6%	15.9%
 Metadata Fused RoBERTa	24.6%	24.4%
 
-📉 Current performance is above random (~16.7%) but far from perfect. Metadata alone did not significantly boost model accuracy in this iteration.
+Current performance is above random (~16.7%) but far from perfect. Metadata alone did not significantly boost model accuracy in this iteration.
 
-📊 Evaluation Metrics
+### Evaluation Metrics
 All models are evaluated using:
 
 Accuracy
@@ -65,7 +67,7 @@ Confusion Matrix
 
 These metrics are used due to class imbalance.
 
-📁 Data
+### Data
 Download the LIAR dataset and place the TSV files in a folder named liar_dataset/.
 
 Files used:
@@ -76,7 +78,7 @@ valid.tsv
 
 test.tsv
 
-🔍 Notable Features
+### Notable Features
 Weighted CrossEntropyLoss based on class frequency
 
 Dynamic and static metadata integration
@@ -87,7 +89,7 @@ Custom model with metadata MLP + frozen BERT layers
 
 Progress tracking via tqdm and confusion matrices
 
-🚀 How to Run
+### How to Run
 Preprocess data:
 
 bash
@@ -106,7 +108,7 @@ train_fused_model.py
 
 Results will be printed at the end of each run, including performance metrics and confusion matrix.
 
-🔄 Future Work
+#### Future Work
 Experiment with longer training (10–15 epochs + early stopping)
 
 Try alternate models like DeBERTa or DistilRoBERTa
